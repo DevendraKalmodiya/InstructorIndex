@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setUser } from '@/redux/authSlice';
 import { toast } from 'sonner';
+import logo from "../assets/Logo.png";
 
 const Navbar = () => {
     const dispatch = useDispatch()
@@ -32,8 +33,8 @@ const Navbar = () => {
                 {/* logo section */}
                 <Link to='/'>
                     <div className='flex gap-1'>
-                        <GraduationCap className='text-gray-300 w-10 h-10' />
-                        <h1 className='text-gray-300 text-3xl font-bold '>Logo</h1>
+                         <img className="w-10 h-10 object-cover shadow-lg rounded-full" src={logo}></img>
+                        <h1 className='text-gray-300 text-3xl font-bold '>InstructorIndex</h1>
                     </div>
                 </Link>
 
