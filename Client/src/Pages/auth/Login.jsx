@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { setUser } from '@/redux/authSlice'
-import axios from 'axios'
+import api from '@/lib/axios'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -27,7 +27,7 @@ const Login = () => {
         e.preventDefault()
         console.log(input);
         try {
-            const response = await axios.post('https://lms-nswg.onrender.com/api/v1/user/login', input, {
+            const response = await api.post('/user/login', input, {
                 headers:{
                     "Content-Type":"application/json"
                 },

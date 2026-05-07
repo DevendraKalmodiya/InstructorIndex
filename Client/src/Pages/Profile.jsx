@@ -13,7 +13,7 @@ import {
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
+import api from '@/lib/axios'
 import { setUser } from '@/redux/authSlice'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
@@ -50,7 +50,7 @@ const Profile = () => {
 
        try {
         setLoading(true)
-        const res = await axios.put('https://lms-nswg.onrender.com/api/v1/user/profile/update',formData, {
+        const res = await api.put('/user/profile/update',formData, {
             headers:{
               "Content-Type":"multipart/form-data"
             },
@@ -103,7 +103,7 @@ const Profile = () => {
                                         <Input
                                         id="name"
                                         name="name"
-                                        value={input.name}
+                                        value={input.name || ""}
                                         onChange={changeEventHandler}
                                         className="col-span-3 text-gray-500"
                                         />

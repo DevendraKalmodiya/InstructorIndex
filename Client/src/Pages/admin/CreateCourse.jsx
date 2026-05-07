@@ -10,7 +10,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import axios from 'axios'
+import api from '@/lib/axios'
 import { Loader2 } from 'lucide-react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -30,7 +30,7 @@ const CreateCourse = () => {
         
         try {
             setLoading(true)
-            const res = await axios.post('https://lms-nswg.onrender.com/api/v1/course/', {courseTitle,category}, {
+            const res = await api.post('/course/', {courseTitle,category}, {
                 headers: {
                     "Content-Type":"application/json"
                 },

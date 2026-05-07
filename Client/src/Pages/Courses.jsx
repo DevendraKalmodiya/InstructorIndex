@@ -1,6 +1,6 @@
 import CourseCard from '@/components/CourseCard'
 import { setCourse } from '@/redux/courseSlice'
-import axios from 'axios'
+import api from '@/lib/axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -75,7 +75,7 @@ const Courses = () => {
   useEffect(()=> {
     const getAllPublishedCourse = async ()=> {
       try {
-        const res = await axios.get(`https://lms-nswg.onrender.com/api/v1/course/published-courses`, {withCredentials:true})
+        const res = await api.get('/course/published-courses')
         if(res.data.success){
           dispatch(setCourse(res.data.courses))
         }
@@ -95,7 +95,7 @@ const Courses = () => {
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
              {
               course?.map((course)=> {
-               return <CourseCard course={course}/>
+               return <CourseCard key={course._id} course={course}/>
               })
              }
           </div>

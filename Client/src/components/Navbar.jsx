@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import api from '@/lib/axios'
 import { setUser } from '@/redux/authSlice';
 import { toast } from 'sonner';
 
@@ -15,7 +15,7 @@ const Navbar = () => {
 
     const logoutHandler = async (e) => {
         try {
-            const res = await axios.get('https://lms-nswg.onrender.com/api/v1/user/logout', {withCredentials:true});
+            const res = await api.get('/user/logout');
             if(res.data.success){
                 navigate('/')
                 dispatch(setUser(null))

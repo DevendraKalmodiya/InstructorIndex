@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup} from '@/components/ui/radio-group'
-import axios from 'axios'
+import api from '@/lib/axios'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -27,7 +27,7 @@ const Signup = () => {
         e.preventDefault(),
         console.log(user)
         try {
-            const response = await axios.post('https://lms-nswg.onrender.com/api/v1/user/register', user, {
+            const response = await api.post('/user/register', user, {
                 headers:{
                     "Content-Type":"application/json"
                 },

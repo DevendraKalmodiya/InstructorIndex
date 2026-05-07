@@ -13,7 +13,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { setCourse } from '@/redux/courseSlice'
-import axios from 'axios'
+import api from '@/lib/axios'
 import { Loader2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -34,7 +34,7 @@ const CourseTab = () => {
 
     const getCourseById = async () => {
         try {
-            const res = await axios.get(`https://lms-nswg.onrender.com/api/v1/course/${id}`, {withCredentials:true})
+            const res = await api.get(`/course/${id}`)
             if(res.data.success){{
                 setSelectedCourse(res.data.course)
             }}
@@ -94,7 +94,7 @@ const CourseTab = () => {
 
         try {
             setLoading(true)
-            const res = await axios.put(`https://lms-nswg.onrender.com/api/v1/course/${id}`, formData, {
+            const res = await api.put(`/course/${id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 },
@@ -116,7 +116,7 @@ const CourseTab = () => {
 
     const togglePublishUnpublish = async(action) => {
         try {
-            const res = await axios.patch(`https://lms-nswg.onrender.com/api/v1/course/${id}`, {
+            const res = await api.patch(`/course/${id}`, {
                 params: {
                     action
                 },

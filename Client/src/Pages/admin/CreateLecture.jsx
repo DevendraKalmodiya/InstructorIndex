@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { setLecture } from '@/redux/lectureSlice'
-import axios from 'axios'
+import api from '@/lib/axios'
 import { Edit, Loader2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,7 +20,7 @@ const CreateLecture = () => {
     const createLectureHandler = async ()=>{
         try {
             setLoading(true)
-            const res = await axios.post(`https://lms-nswg.onrender.com/api/v1/course/${params?.courseId}/lecture`,{lectureTitle},{
+            const res = await api.post(`/course/${params?.courseId}/lecture`,{lectureTitle},{
                 headers:{
                     "Content-Type":"application/json"
                 },
@@ -41,7 +41,7 @@ const CreateLecture = () => {
     useEffect(()=>{
         const getLectures = async()=> {
             try {
-                const res = await axios.get(`https://lms-nswg.onrender.com/api/v1/course/${params.courseId}/lecture`,{withCredentials:true})
+                const res = await api.get(`/course/${params.courseId}/lecture`)
                 if(res.data.success){
                     dispatch(setLecture(res.data.lectures))
                 }

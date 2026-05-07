@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import axios from 'axios'
+import api from '@/lib/axios'
 import { ArrowLeft, Lock, PlayCircle } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
@@ -18,7 +18,7 @@ const CourseDetails = () => {
     useEffect(()=> {
         const getCourseLecture = async()=> {
             try {
-                const res = await axios.get(`https://lms-nswg.onrender.com/api/v1/course/${courseId}/lecture`, {withCredentials:true})
+                const res = await api.get(`/course/${courseId}/lecture`)
                 if(res.data.success){
                     setCourseLecture(res.data.lectures)
                 }

@@ -11,7 +11,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from '@/lib/axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCourse } from '@/redux/courseSlice'
 import { Badge } from '@/components/ui/badge'
@@ -69,7 +69,7 @@ const Course = () => {
     useEffect(() => {
         const getCreatorCourse = async () => {
             try {
-                const res = await axios.get('https://lms-nswg.onrender.com/api/v1/course/', { withCredentials: true })
+                const res = await api.get('/course/')
                 if (res.data.success) {
                     dispatch(setCourse(res.data.courses))
                 }

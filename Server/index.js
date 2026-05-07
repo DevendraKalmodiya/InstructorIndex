@@ -1,5 +1,5 @@
-import express from "express"
 import dotenv from "dotenv"
+import express from "express"
 import connectDB from "./utils/db.js"
 import userRoute from "./routes/user.route.js"
 import courseRoute from "./routes/course.route.js"
@@ -7,8 +7,16 @@ import mediaRoute from "./routes/media.route.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import path from "path"
+import { fileURLToPath } from 'url'
+import "./utils/cloudinary.js";
 
-dotenv.config()
+// ES Module equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+dotenv.config({
+  path: path.join(__dirname, ".env")
+});
 
 const app = express()
 
@@ -19,7 +27,7 @@ app.use(express.json())
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(cors({
-    origin:"https://lms-nswg.onrender.com",
+    origin:["http://localhost:5173", "http://localhost:3000"],
     credentials:true
 }))
 
