@@ -40,10 +40,10 @@ app.use("/api/v1/media", mediaRoute)
 app.use("/api/v1/user", userRoute)
 app.use("/api/v1/course", courseRoute)
 
-app.use(express.static(path.join(_dirname, "/Client/dist")));
-app.get("*", (_, res)=>{
-    res.sendFile(path.resolve(_dirname, "Client", "dist", "index.html"))
-});
+// app.use(express.static(path.join(_dirname, "/Client/dist")));
+// app.get("*", (_, res)=>{
+//     res.sendFile(path.resolve(_dirname, "Client", "dist", "index.html"))
+// });
 
 
 app.listen(PORT, ()=>{
