@@ -13,7 +13,8 @@ const courseSchema = new mongoose.Schema({
     },
     courseLevel:{
         type:String,
-        enum:['Beginner', "Medium", "Advance"]
+        enum:['Beginner', "Medium", "Advance"],
+        default:"Beginner"
     },
     coursePrice:{
         type:Number
